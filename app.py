@@ -4,9 +4,6 @@ import os
 app = Flask(__name__)
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
-
-
-
 @app.after_request
 def add_header(response):
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
@@ -15,27 +12,35 @@ def add_header(response):
     return response
 
 
-def correct_code_openai(code):
+def correct_code_openai(code, lang):
     url = "https://api.openai.com/v1/chat/completions"
+
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"Bearer {OPENAI_API_KEY}",
+        "Authorization": f"Bearer {OPENAI_API_KEY}"
     }
+
     data = {
         "model": "gpt-4o-mini",
         "messages": [
             {
                 "role": "system",
-                "content": "You will receive code. Fix it and give a short explaination for  all the changes that you have made in the form of comments. Return ONLY the corrected code. Do NOT include markdown or ```python``` blocks.  Output ONLY raw corrected code and nothing else."
+                "content": f"You are an expert {lang} developer. Only correct {lang} code."
             },
-            {"role": "user", "content": code}
+            {
+                "role": "user",
+                "content": f"Correct this {lang} code. You will receive code. Fix it and give a short explaination for  all the changes that you have made in the form of comments. Return ONLY the corrected code. Do NOT include markdown or ```python``` blocks.  Output ONLY raw corrected code and nothing else.{code}"
+            }
         ]
     }
-    r = requests.post(url, json=data, headers=headers).json()
-    if "choices" in r:
-        return r["choices"][0]["message"]["content"]
-    return str(r)
 
+    response = requests.post(url, json=data, headers=headers)
+    result = response.json()
+
+    if "choices" not in result:
+        return f"OPENAI API ERROR:\n{result}"
+
+    return result["choices"][0]["message"]["content"]
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -49,3 +54,4 @@ def index():
 
 if __name__ == "__main__":
     app.run()
+
