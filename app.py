@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request
 import requests
-
+import os
 app = Flask(__name__)
 
-OPENAI_API_KEY = "YOUR_API_KEY_HERE"
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 def correct_code_openai(code, lang):
 
@@ -54,3 +54,4 @@ def index():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
