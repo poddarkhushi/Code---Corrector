@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>AI Code Corrector</title>
+    <title>AI Code-Corrector</title>
 
     <style>
         body {
@@ -36,17 +36,14 @@
             opacity: 0.85;
         }
 
-        /* WRAPPER FOR LABEL + DROPDOWN */
         .lang-container {
             display: flex;
             justify-content: flex-end;
-            /* pushes to the right */
             align-items: center;
             gap: 10px;
             margin-bottom: 10px;
         }
 
-        /* DROPDOWN */
         .select-wrapper {
             position: relative;
             display: inline-block;
@@ -99,25 +96,25 @@
             <label style="font-size: 18px; font-weight: bold;">Select Language:</label>
 
             <div class="select-wrapper">
-               <select name="lang" id="lang">
-    <option value="Python" {% if selected_lang == "Python" %}selected{% endif %}>Python</option>
-    <option value="C" {% if selected_lang == "C" %}selected{% endif %}>C</option>
-    <option value="C++" {% if selected_lang == "C++" %}selected{% endif %}>C++</option>
-    <option value="Java" {% if selected_lang == "Java" %}selected{% endif %}>Java</option>
-    <option value="JavaScript" {% if selected_lang == "JavaScript" %}selected{% endif %}>JavaScript</option>
-    <option value="HTML" {% if selected_lang == "HTML" %}selected{% endif %}>HTML</option>
-    <option value="CSS" {% if selected_lang == "CSS" %}selected{% endif %}>CSS</option>
-    <option value="PHP" {% if selected_lang == "PHP" %}selected{% endif %}>PHP</option>
-    <option value="C#" {% if selected_lang == "C#" %}selected{% endif %}>C#</option>
-    <option value="Swift" {% if selected_lang == "Swift" %}selected{% endif %}>Swift</option>
-    <option value="Rust" {% if selected_lang == "Rust" %}selected{% endif %}>Rust</option>
-    <option value="Go" {% if selected_lang == "Go" %}selected{% endif %}>Go</option>
-    <option value="Kotlin" {% if selected_lang == "Kotlin" %}selected{% endif %}>Kotlin</option>
-    <option value="Ruby" {% if selected_lang == "Ruby" %}selected{% endif %}>Ruby</option>
-    <option value="Perl" {% if selected_lang == "Perl" %}selected{% endif %}>Perl</option>
-    <option value="Dart" {% if selected_lang == "Dart" %}selected{% endif %}>Dart</option>
-    <option value="Haskell" {% if selected_lang == "Haskell" %}selected{% endif %}>Haskell</option>
-</select>
+                <select name="lang" id="lang">
+                    <option value="Python" {% if selected_lang == "Python" %}selected{% endif %}>Python</option>
+                    <option value="C" {% if selected_lang == "C" %}selected{% endif %}>C</option>
+                    <option value="C++" {% if selected_lang == "C++" %}selected{% endif %}>C++</option>
+                    <option value="Java" {% if selected_lang == "Java" %}selected{% endif %}>Java</option>
+                    <option value="JavaScript" {% if selected_lang == "JavaScript" %}selected{% endif %}>JavaScript</option>
+                    <option value="HTML" {% if selected_lang == "HTML" %}selected{% endif %}>HTML</option>
+                    <option value="CSS" {% if selected_lang == "CSS" %}selected{% endif %}>CSS</option>
+                    <option value="PHP" {% if selected_lang == "PHP" %}selected{% endif %}>PHP</option>
+                    <option value="C#" {% if selected_lang == "C#" %}selected{% endif %}>C#</option>
+                    <option value="Swift" {% if selected_lang == "Swift" %}selected{% endif %}>Swift</option>
+                    <option value="Rust" {% if selected_lang == "Rust" %}selected{% endif %}>Rust</option>
+                    <option value="Go" {% if selected_lang == "Go" %}selected{% endif %}>Go</option>
+                    <option value="Kotlin" {% if selected_lang == "Kotlin" %}selected{% endif %}>Kotlin</option>
+                    <option value="Ruby" {% if selected_lang == "Ruby" %}selected{% endif %}>Ruby</option>
+                    <option value="Perl" {% if selected_lang == "Perl" %}selected{% endif %}>Perl</option>
+                    <option value="Dart" {% if selected_lang == "Dart" %}selected{% endif %}>Dart</option>
+                    <option value="Haskell" {% if selected_lang == "Haskell" %}selected{% endif %}>Haskell</option>
+                </select>
             </div>
         </div>
 
