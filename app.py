@@ -18,7 +18,7 @@ def correct_code_openai(code, lang):
         "model": "gpt-4o-mini",   
         "messages": [
             {"role": "system", "content": f"You are a code correction assistant. The user is writing in {lang}."},
-            {"role": "user", "content": f"Fix this {lang} code.You will receive code. Fix it and give a short explaination for all the changes that you have made in the form of comments. Return ONLY the corrected code. Do NOT include markdown or ```python``` blocks.  Output ONLY raw corrected code and nothing else.\n\n{code}"}
+            {"role": "user", "content": f"Fix this {lang} code.You will receive code. Fix it and give a short explaination for all the changes that you have made in the form of comments. Return ONLY the corrected code. Do NOT include markdown or ```python``` blocks.  Output ONLY raw corrected code and nothing else.\n\n. if the language and code do not match, give appropriate error{code}"}
         ]
     }
 
@@ -54,5 +54,6 @@ def index():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
 
 
