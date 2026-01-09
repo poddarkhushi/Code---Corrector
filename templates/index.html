@@ -4,11 +4,6 @@
 <head>
     <title>AI Code Corrector</title>
 
-    <!-- Prevent caching -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,22 +14,66 @@
         textarea {
             width: 100%;
             height: 220px;
-            padding: 10px;
+            padding: 12px;
             font-size: 15px;
-            border-radius: 8px;
+            border-radius: 10px;
             border: 1px solid #ccc;
-            color: black;
+            outline: none;
         }
 
         button {
-            margin-top: 15px;
             padding: 12px 24px;
             border: none;
             background: black;
             color: white;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 16px;
             cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            opacity: 0.85;
+        }
+
+        /* WRAPPER FOR LABEL + DROPDOWN */
+        .lang-container {
+            display: flex;
+            justify-content: flex-end;
+            /* pushes to the right */
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* DROPDOWN */
+        .select-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        select {
+            padding: 12px 20px;
+            border: none;
+            background: black;
+            color: white;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            appearance: none;
+            width: 180px;
+            text-align: center;
+        }
+
+        .select-wrapper::after {
+            content: "▼";
+            font-size: 12px;
+            color: white;
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
         }
 
         .output-box {
@@ -43,10 +82,11 @@
             margin-top: 20px;
             border-radius: 12px;
             box-shadow: 0px 0px 8px #ccc;
-            font-family: monospace;
             white-space: pre-wrap;
+            font-family: monospace;
         }
     </style>
+
 </head>
 
 <body>
@@ -54,8 +94,35 @@
     <h1>AI Code Corrector</h1>
 
     <form method="POST">
-        <textarea name="code" placeholder="Paste your code here.">{{ input_code }}</textarea>
-        <br>
+
+        <div class="lang-container">
+            <label style="font-size: 18px; font-weight: bold;">Select Language:</label>
+
+            <div class="select-wrapper">
+                <select name="lang" id="lang">
+                    <option value="Python">Python</option>
+                    <option value="C">C</option>
+                    <option value="C++">C++</option>
+                    <option value="Java">Java</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="HTML">HTML</option>
+                    <option value="CSS">CSS</option>
+                    <option value="PHP">PHP</option>
+                    <option value="C#">C#</option>
+                    <option value="Swift">Swift</option>
+                    <option value="Rust">Rust</option>
+                    <option value="Go">Go</option>
+                    <option value="Kotlin">Kotlin</option>
+                    <option value="Ruby">Ruby</option>
+                    <option value="Perl">Perl</option>
+                    <option value="Dart">Dart</option>
+                    <option value="Haskell">Haskell</option>
+                </select>
+            </div>
+        </div>
+
+        <textarea name="code" placeholder="Paste your code here...">{{ input_code }}</textarea>
+
         <button type="submit">Correct Code</button>
     </form>
 
@@ -65,15 +132,6 @@
         <pre>{{ output }}</pre>
     </div>
     {% endif %}
-
-    <script>
-        // Clear input/output on manual browser refresh
-        if (performance.navigation.type === 1) {
-            document.querySelector("textarea").value = "";
-            const box = document.querySelector(".output-box");
-            if (box) box.remove();
-        }
-    </script>
 
 </body>
 
