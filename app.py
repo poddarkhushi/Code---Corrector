@@ -37,7 +37,7 @@ def correct_code_openai(code, lang):
 def index():
     output = ""
     input_code = ""
-    selected_lang = "Python"  # default
+    selected_lang = "Python"  
 
     if request.method == "POST":
         input_code = request.form.get("code", "")
@@ -54,6 +54,7 @@ def index():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
 
 
 
